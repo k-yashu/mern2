@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Animation</title>
+  <style>
+    #animationContainer {
+      width: 300px;
+      height: 300px;
+      position: relative;
+    }
+
+    #animatedImage {
+      width: 300px;
+      height: 300px;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+    
+  <div id="animationContainer" align="center">
+    <img id="animatedImage" img src="https://img.freepik.com/premium-vector/steam-locomotive-cartoon-clipart-illustration_576561-1290.jpg" alt="Your Image">
+  </div>
+<p align="center" style="color:blue;">Click the following buttons to handle animation</p>
+  <div align="center">
+    <button id="startButton">Start</button>
+    <button id="stopButton">Stop</button>
+  </div>
+
+  <script>
+    let animationId;
+    const animatedImage = document.getElementById("animatedImage");
+    const startButton = document.getElementById("startButton");
+    const stopButton = document.getElementById("stopButton");
+
+    let position = 0; 
+
+    function animate() {
+      position += 2; 
+      animatedImage.style.left = `${position}px`;
+
+      
+      animationId = requestAnimationFrame(animate);
+    }
+
+    startButton.addEventListener("click", () => {
+      
+      animatedImage.src = "https://img.freepik.com/premium-vector/steam-locomotive-cartoon-clipart-illustration_576561-1290.jpg"; 
+      animationId = requestAnimationFrame(animate);
+    });
+
+    stopButton.addEventListener("click", () => {
+      cancelAnimationFrame(animationId);
+    });
+  </script>
+</body>
+</html>
